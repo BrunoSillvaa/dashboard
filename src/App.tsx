@@ -1,12 +1,15 @@
 import { GlobalStyles } from './AppStyles'
+import { GeneralContextProvider } from './contexts/GeneralContext'
 import { Home } from './pages/Home'
 
 function App() {
 
   return (
     <>
-      <Home />
-      <GlobalStyles />
+      <GeneralContextProvider>
+        <Home />
+        <GlobalStyles />
+      </GeneralContextProvider>
     </>
   )
 }

@@ -19,4 +19,9 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: auto 1fr;
   column-gap: 24px;
+  position: relative;
+
+  @media (max-width: 700px) {
+    display: block;
+  }
 `

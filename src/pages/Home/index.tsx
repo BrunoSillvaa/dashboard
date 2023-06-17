@@ -11,35 +11,40 @@ import { FaWallet } from 'react-icons/fa'
 import { ColumnChartCard } from './Cards/ColumnChartCard'
 import { RevenueCard } from './Cards/RevenueCard'
 
+import { useContext } from 'react'
+import { GeneralContext } from '../../contexts/GeneralContext'
+
 export function Home() {
+  const {sidebar} = useContext(GeneralContext)
+
   return (
     <Container>
       <Sidebar />
-      <Content>
+      <Content sidebar={sidebar}>
         <Navbar />
 
         <FirstRow>
           <SimpleCard
             title={'Saldo'}
-            value={3000}
+            value={7250}
             icon={<FaWallet className='icon' />}
           />
 
           <SimpleCard
             title={'Semana'}
-            value={3000}
+            value={2120}
             icon={<FaWallet className='icon' />}
           />
 
           <SimpleCard
             title={'Mês'}
-            value={3000}
+            value={6300}
             icon={<FaWallet className='icon' />}
           />
 
           <SimpleCard
             title={'Ano'}
-            value={3000}
+            value={42710}
             icon={<FaWallet className='icon' />}
           />
         </FirstRow>

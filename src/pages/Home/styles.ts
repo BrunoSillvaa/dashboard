@@ -7,6 +7,10 @@ export const FirstRow = styled.section`
   width: 100%;
   column-gap: 24px;
   grid-template-columns: repeat(4, 1fr);
+
+  @media (max-width: 700px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 export const SecondRow = styled.section`
   display: grid;
@@ -14,6 +18,12 @@ export const SecondRow = styled.section`
   width: 100%;
   column-gap: 24px;
   grid-template-columns: repeat(5, 1fr);
+
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
 `
 export const ThirdRow = styled.section`
   display: grid;
@@ -21,14 +31,26 @@ export const ThirdRow = styled.section`
   width: 100%;
   column-gap: 24px;
   grid-template-columns: repeat(4, 1fr);
+
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
 `
 
+interface HomeProps {
+  sidebar: boolean
+}
+
 // Content Styles
-export const Content = styled.main`
+export const Content = styled.main<HomeProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 26px;
+  transition: all ease .2s;
+  filter: ${props => props.sidebar ? 'blur(3px)' : ''};
 `
 export const SimpleCardContainer = styled.article`
   background: #080b27;
@@ -41,7 +63,7 @@ export const SimpleCardContainer = styled.article`
 
   .title {
     color: #a0aec0;
-    font-size: 16px;
+    font-size: clamp(12px, 16px, 18px);
     font-weight: 700;
     grid-column: 1;
     grid-row: 1;
@@ -49,7 +71,7 @@ export const SimpleCardContainer = styled.article`
 
   .value {
     color: #fff;
-    font-size: 18px;
+    font-size: clamp(16px, 18px, 20px);
     font-weight: 600;
     grid-column: 1;
     grid-row: 2;
@@ -80,6 +102,10 @@ export const WelcomeCardContainer = styled.article`
   grid-column: 1/3;
   grid-template-rows: repeat(2, auto) 1fr;
   row-gap: 18px;
+
+  @media (max-width: 700px) {
+   width: 100%;
+  }
 
   .title {
     color: #a0aec0;
@@ -169,10 +195,10 @@ export const RevenueCardContainer = styled.article`
       }
     }
 
-
     .table {
       width: 98%;
       border-collapse: collapse;
+      overflow-y: scroll;
 
       .header {
         th {
@@ -188,6 +214,7 @@ export const RevenueCardContainer = styled.article`
           padding: 10px;
           border-bottom: 2px solid rgba(255, 255, 255, 30%);
           border-radius: 12px;
+          font-size: clamp(12px, 14px, 16px);
 
           &:nth-child(3) {
             font-family: 'Space Mono', monospace;

@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+interface HamburguerProps {
+  sidebar: boolean
+}
+
 export const Container = styled.nav`
   display: flex;
   align-items: center;
@@ -25,13 +29,17 @@ export const Container = styled.nav`
     gap: 14px;
 
     .search-wrapper {
-      color: #FFF;
+      color: #fff;
       display: flex;
       align-items: center;
       border-radius: 16px;
       border: 2px solid #e2e8f0;
       padding: 10px;
       gap: 12px;
+
+      @media (max-width: 700px) {
+        display: none;
+      }
 
       .icon {
         font-size: 18px;
@@ -52,6 +60,43 @@ export const Container = styled.nav`
       text-decoration: none;
       font-size: 18px;
       font-weight: 600;
+    }
+  }
+`
+export const Hamburguer = styled.div<HamburguerProps>`
+  display: none;
+  height: 16px;
+  width: 24px;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+
+  @media (max-width: 700px) {
+    display: flex;
+  }
+
+  .line {
+    display: block;
+    height: 3px;
+    width: 100%;
+    border-radius: 10px;
+    background: #fff;
+
+    &.line1 {
+      transform-origin: 0% 0%;
+      transition: transform 0.4s ease-in-out;
+      transform: ${(props) => (props.sidebar ? 'rotate(45deg)' : '')};
+    }
+
+    &.line2 {
+      transition: transform 0.2s ease-in-out;
+      transform: ${(props) => (props.sidebar ? 'scaleY(0)' : '')};
+    }
+
+    &.line3 {
+      transform-origin: 0% 100%;
+      transition: transform 0.4s ease-in-out;
+      transform: ${(props) => (props.sidebar ? 'rotate(-45deg)' : '')};
     }
   }
 `
